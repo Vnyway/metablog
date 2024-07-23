@@ -2,6 +2,15 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../../context/globalContext";
 import { Link } from "react-router-dom";
 
+const categories = [
+  { id: 1, cat: "Lifestyle" },
+  { id: 2, cat: "Technology" },
+  { id: 3, cat: "Travel" },
+  { id: 4, cat: "Business" },
+  { id: 5, cat: "Economy" },
+  { id: 6, cat: "Sports" },
+];
+
 const Footer = () => {
   const { darkTheme } = useContext(GlobalContext);
   return (
@@ -145,78 +154,20 @@ const Footer = () => {
                 Category
               </h3>
               <ul className="flex flex-col font-normal text-[16px] leading-[24px] gap-[5px]">
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Lifestyle
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Technology
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Travel
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Business
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Economy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Sports
-                  </Link>
-                </li>
+                {categories.map((category) => (
+                  <li key={category.id}>
+                    <Link
+                      to={`/?cat=${category.cat}`}
+                      style={{ transition: "all ease-out .3s" }}
+                      className={`text-[#696A75] ${
+                        darkTheme
+                          ? "hover:text-[#FFFFFF]"
+                          : "hover:text-[#181A2A]"
+                      }`}>
+                      {category.cat}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

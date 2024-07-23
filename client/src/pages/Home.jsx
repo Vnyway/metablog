@@ -3,18 +3,21 @@ import { GlobalContext } from "../context/globalContext";
 import TopSection from "../components/general-components/TopSection";
 import Posts from "../components/general-components/Posts";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const { darkTheme, search } = useContext(GlobalContext);
   const [posts, setPosts] = useState([]);
   const [shownPosts, setShownPosts] = useState([]);
-  const [latestPost, setLatestPost] = useState({});
+  const [latestPost, setLatestPost] = useState(null);
+  const cat = useLocation().search;
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/api/posts");
+        const res = await axios.get(`http://localhost:8800/api/posts${cat}`);
         setPosts(res.data);
         setShownPosts(res.data);
+        console.log(res.data);
 
         if (res.data.length > 0) {
           const latest = res.data.reduce((latest, post) => {
@@ -22,17 +25,17 @@ const Home = () => {
           }, res.data[0]);
           setLatestPost(latest);
         } else {
-          setLatestPost({});
+          setLatestPost(null);
         }
       } catch (error) {
         console.log(error);
         setPosts([]);
         setShownPosts([]);
-        setLatestPost({});
+        setLatestPost(null);
       }
     };
     getPosts();
-  }, []);
+  }, [cat]);
 
   useEffect(() => {
     if (search.trim() !== "") {
