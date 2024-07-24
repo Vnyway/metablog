@@ -22,7 +22,7 @@ const TopSection = ({ latestPost }) => {
                 : "bg-[#FFFFFF] text-[#181A2A]"
             } shadow-lg flex flex-col items-start gap-[24px]`}>
             <Link
-              to="/"
+              to={`/?cat=${latestPost.cat}`}
               className="px-[10px] py-[4px] bg-category rounded-[6px] text-white font-medium text-[14px]">
               {latestPost.cat}
             </Link>
@@ -31,11 +31,13 @@ const TopSection = ({ latestPost }) => {
                 {latestPost.title}
               </h1>
             </Link>
-            <div className="flex gap-[20px] items-center text-paragraph font-medium text-[16px]">
-              <img src={latestPost.userImg} alt="user" />
-              <span>{latestPost.username}</span>
-              <span>{formattedDate(latestPost.date)}</span>
-            </div>
+            <Link to={`/blogger/${latestPost.uid}`}>
+              <div className="flex gap-[20px] items-center text-paragraph font-medium text-[16px]">
+                <img src={latestPost.userImg} alt="user" />
+                <span>{latestPost.username}</span>
+                <span>{formattedDate(latestPost.date)}</span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>

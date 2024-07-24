@@ -11,9 +11,21 @@ export const GlobalContextProvider = ({ children }) => {
     return new Intl.DateTimeFormat("en-US", dateOptions).format(date);
   };
 
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent;
+  };
+
   return (
     <GlobalContext.Provider
-      value={{ darkTheme, setDarkTheme, search, setSearch, formattedDate }}>
+      value={{
+        darkTheme,
+        setDarkTheme,
+        search,
+        setSearch,
+        formattedDate,
+        getText,
+      }}>
       {children}
     </GlobalContext.Provider>
   );

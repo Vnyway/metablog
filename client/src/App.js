@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
-import Blog from "./pages/Blog";
+import Blogger from "./pages/Blogger";
 import Contact from "./pages/Contact";
 import Pages from "./pages/Pages";
 import SinglePost from "./pages/SinglePost";
@@ -21,10 +21,10 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/blogger/:id" element={<Blogger />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pages" element={<Pages />} />
-          <Route path="/singlePost" element={<SinglePost />} />
+          <Route path="/singlePost/:id" element={<SinglePost />} />
         </Route>
       </Routes>
     </BrowserRouter>

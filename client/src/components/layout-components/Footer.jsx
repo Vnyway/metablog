@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../context/globalContext";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const categories = [
   { id: 1, cat: "Lifestyle" },
@@ -13,6 +14,27 @@ const categories = [
 
 const Footer = () => {
   const { darkTheme } = useContext(GlobalContext);
+
+  const [input, setInput] = useState({
+    email: "",
+  });
+
+  const [err, setErr] = useState(null);
+
+  const handleChange = (e) => {
+    setInput({ [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:8800/api/subscribers/add", input);
+    } catch (error) {
+      setErr(error.response.data);
+      console.log(err);
+    }
+  };
+
   return (
     <footer
       style={{ transition: "all ease-in-out .3s" }}
@@ -190,6 +212,7 @@ const Footer = () => {
               type="text"
               placeholder="Your Email"
               name="email"
+              onChange={handleChange}
               style={{ transition: "all ease-in-out .3s" }}
               className={`${
                 darkTheme
@@ -197,7 +220,9 @@ const Footer = () => {
                   : "bg-[#FFFFFF] border-[#DCDDDF]"
               } border-[1px]  h-[48px] w-full px-[16px] py-[12px] font-normal text-[16px] text-paragraph leading-[24px] outline-category mb-[8px]`}
             />
+            {/* <p>{err && err}</p> */}
             <button
+              onClick={handleSubmit}
               style={{ transition: "all ease-out .3s" }}
               className={`px-[20px] py-[12px] rounded-[6px] border-[1px] border-[#4B6BFB] bg-[#4B6BFB] ${
                 darkTheme ? "hover:bg-[#242535]" : "hover:bg-[#FFFFFF]"
