@@ -13,13 +13,13 @@ const categories = [
 ];
 
 const Footer = () => {
-  const { darkTheme } = useContext(GlobalContext);
+  const { darkTheme, validateEmail } = useContext(GlobalContext);
 
   const [input, setInput] = useState({
     email: "",
   });
 
-  const [err, setErr] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const handleChange = (e) => {
     setInput({ [e.target.name]: e.target.value });
@@ -27,11 +27,12 @@ const Footer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:8800/api/subscribers/add", input);
-    } catch (error) {
-      setErr(error.response.data);
-      console.log(err);
+    if (validateEmail(input.email)) {
+      setMessage(
+        await axios.post("http://localhost:8800/api/subscribers/add", input)
+      );
+    } else {
+      setMessage({ data: "Incorrect email!" });
     }
   };
 
@@ -220,7 +221,17 @@ const Footer = () => {
                   : "bg-[#FFFFFF] border-[#DCDDDF]"
               } border-[1px]  h-[48px] w-full px-[16px] py-[12px] font-normal text-[16px] text-paragraph leading-[24px] outline-category mb-[8px]`}
             />
-            {/* <p>{err && err}</p> */}
+            {message && (
+              <p
+                className={`${
+                  message.data === "User already exixts!" ||
+                  message.data === "Incorrect email!"
+                    ? "text-red-600"
+                    : "text-green-600"
+                } text-center pb-[10px]`}>
+                {message.data}
+              </p>
+            )}
             <button
               onClick={handleSubmit}
               style={{ transition: "all ease-out .3s" }}

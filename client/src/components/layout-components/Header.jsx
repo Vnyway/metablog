@@ -2,19 +2,18 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { listItemLight, listItemDark } from "../../styles/styles";
 import { GlobalContext } from "../../context/globalContext";
-import { motion } from "framer-motion";
 import BurgerMenu from "./BurgerMenu";
 
 export const links = [
   { id: 1, name: "Home", path: "/" },
-  { id: 2, name: "Blog", path: "/blog" },
-  { id: 3, name: "Single Post", path: "/singlePost" },
-  { id: 4, name: "Pages", path: "/pages" },
+  { id: 2, name: "Blogger", path: "/blogger/1" },
+  { id: 3, name: "Single Post", path: "/singlePost/1" },
   { id: 5, name: "Contact", path: "/contact" },
 ];
 
 const Header = () => {
-  const { darkTheme, setDarkTheme, setSearch } = useContext(GlobalContext);
+  const { darkTheme, setDarkTheme, setSearch, currentUser } =
+    useContext(GlobalContext);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -46,6 +45,21 @@ const Header = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              {!currentUser ? (
+                <Link
+                  style={{ transition: "all ease-out .3s" }}
+                  className={darkTheme ? listItemDark : listItemLight}
+                  to="/login">
+                  Login
+                </Link>
+              ) : (
+                <div className="flex items-center gap-[10px]">
+                  <img src={currentUser.img} alt={currentUser.username} />
+                  <span>Logout</span>
+                </div>
+              )}
+            </li>
           </ul>
         </nav>
         <div className="flex items-center gap-[20px]">

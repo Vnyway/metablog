@@ -8,7 +8,7 @@ export const addSubscriber = (req, res) => {
 
     const q = "INSERT INTO subscribers(`email`) VALUES (?)";
     db.query(q, [req.body.email], (err, data) => {
-      if (err) return res.status(503).json(err);
+      if (err) return res.json("User already exixts!");
       return res.status(200).json("User has been added successfully!");
     });
   });

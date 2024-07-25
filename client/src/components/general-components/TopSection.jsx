@@ -26,7 +26,7 @@ const TopSection = ({ latestPost }) => {
               className="px-[10px] py-[4px] bg-category rounded-[6px] text-white font-medium text-[14px]">
               {latestPost.cat}
             </Link>
-            <Link to="/">
+            <Link to={`/singlePost/${latestPost.id}`}>
               <h1 className="font-semibold text-[36px] leading-[40px]">
                 {latestPost.title}
               </h1>

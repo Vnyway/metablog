@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { links } from "./Header";
 import { GlobalContext } from "../../context/globalContext";
@@ -32,6 +31,14 @@ const Menu = () => {
               </Link>
             </li>
           ))}
+          <li>
+            <Link
+              style={{ transition: "all ease-out .3s" }}
+              className={darkTheme ? burderItemDark : burgerItemLight}
+              to="/login">
+              Login
+            </Link>
+          </li>
         </ul>
       </nav>
       <div className="shadw"></div>

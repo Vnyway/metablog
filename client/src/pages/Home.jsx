@@ -17,7 +17,6 @@ const Home = () => {
         const res = await axios.get(`http://localhost:8800/api/posts${cat}`);
         setPosts(res.data);
         setShownPosts(res.data);
-        console.log(res.data);
 
         if (res.data.length > 0) {
           const latest = res.data.reduce((latest, post) => {

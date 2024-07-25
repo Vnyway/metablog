@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../../context/globalContext";
 
@@ -19,6 +19,7 @@ const Posts = ({ shownPosts, author }) => {
           {shownPosts.map((post) => (
             <div
               style={{ transition: "all ease-in-out .3s" }}
+              key={post.id}
               className={`${
                 darkTheme ? "bg-[#181A2A]" : ""
               } rounded-[12px] border-[1px] border-[#E8E8EA] p-[16px] flex flex-col gap-[16px] items-start hover:shadow-lg`}>
