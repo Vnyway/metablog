@@ -12,7 +12,7 @@ export const links = [
 ];
 
 const Header = () => {
-  const { darkTheme, setDarkTheme, setSearch, currentUser } =
+  const { darkTheme, setDarkTheme, setSearch, currentUser, logout } =
     useContext(GlobalContext);
 
   const handleChange = (e) => {
@@ -54,10 +54,21 @@ const Header = () => {
                   Login
                 </Link>
               ) : (
-                <div className="flex items-center gap-[10px]">
-                  <img src={currentUser.img} alt={currentUser.username} />
-                  <span>Logout</span>
-                </div>
+                <button
+                  onClick={logout}
+                  className="flex items-center gap-[10px]">
+                  <img
+                    src={
+                      currentUser.img
+                        ? currentUser.img
+                        : "/images/bloggers/default.svg"
+                    }
+                    alt={currentUser.username}
+                  />
+                  <span className={darkTheme ? listItemDark : listItemLight}>
+                    Logout
+                  </span>
+                </button>
               )}
             </li>
           </ul>

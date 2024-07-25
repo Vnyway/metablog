@@ -5,7 +5,7 @@ import { GlobalContext } from "../../context/globalContext";
 import { burgerItemLight, burderItemDark } from "../../styles/styles";
 
 const Menu = () => {
-  const { darkTheme } = useContext(GlobalContext);
+  const { darkTheme, currentUser, logout } = useContext(GlobalContext);
   return (
     <>
       <nav
@@ -32,12 +32,28 @@ const Menu = () => {
             </li>
           ))}
           <li>
-            <Link
-              style={{ transition: "all ease-out .3s" }}
-              className={darkTheme ? burderItemDark : burgerItemLight}
-              to="/login">
-              Login
-            </Link>
+            {!currentUser ? (
+              <Link
+                style={{ transition: "all ease-out .3s" }}
+                className={darkTheme ? burderItemDark : burgerItemLight}
+                to="/login">
+                Login
+              </Link>
+            ) : (
+              <button onClick={logout} className="flex items-center gap-[10px]">
+                <img
+                  src={
+                    currentUser.img
+                      ? currentUser.img
+                      : "/images/bloggers/default.svg"
+                  }
+                  alt={currentUser.username}
+                />
+                <span className={darkTheme ? burderItemDark : burgerItemLight}>
+                  Logout
+                </span>
+              </button>
+            )}
           </li>
         </ul>
       </nav>

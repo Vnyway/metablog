@@ -7,9 +7,10 @@ import DOMpurify from "dompurify";
 
 const SinglePost = () => {
   const { id } = useParams();
-  const { darkTheme, formattedDate } = useContext(GlobalContext);
+  const { darkTheme, formattedDate, currentUser } = useContext(GlobalContext);
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState();
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -36,6 +37,8 @@ const SinglePost = () => {
     };
     getComments();
   }, [id]);
+
+  const handleChange = (e) => {};
 
   let sanitizedContent;
 
@@ -81,7 +84,11 @@ const SinglePost = () => {
                 <div className="flex flex-col gap-[20px]">
                   <div className="flex items-center gap-[12px]">
                     <img
-                      src={comment.userImg}
+                      src={
+                        comment.userImg
+                          ? comment.userImg
+                          : "/images/bloggers/default.svg"
+                      }
                       alt={comment.username}
                       className="size-[45px]"
                     />
@@ -99,6 +106,37 @@ const SinglePost = () => {
                   </p>
                 </div>
               ))}
+            {currentUser && (
+              <form className="flex items-center gap-[20px]">
+                <img
+                  src={
+                    currentUser.userImg
+                      ? currentUser.userImg
+                      : "/images/bloggers/default.svg"
+                  }
+                  alt={currentUser.username}
+                />
+                <input
+                  type="text"
+                  placeholder="Type Your Comment"
+                  name="comment"
+                  onChange={handleChange}
+                  style={{ transition: "all ease-in-out .3s" }}
+                  className={`${
+                    darkTheme
+                      ? "bg-[#181A2A] border-[#3B3C4A]"
+                      : "bg-[#FFFFFF] border-[#DCDDDF]"
+                  } border-b-[1px] h-[32px] w-[300px] px-[5px] py-[8px] font-normal text-[16px] text-paragraph leading-[24px] outline-none mb-[8px]`}
+                />
+                <button
+                  style={{ transition: "all ease-out .3s" }}
+                  className={`px-[30px] py-[5px] rounded-[6px] border-[1px] border-[#4B6BFB] bg-[#4B6BFB] ${
+                    darkTheme ? "hover:bg-[#242535]" : "hover:bg-[#FFFFFF]"
+                  } text-[#FFFFFF] hover:text-[#4B6BFB] font-medium text-[16px] leading-[24px]`}>
+                  Add Comment
+                </button>
+              </form>
+            )}
           </div>
         </div>
       )}
