@@ -6,11 +6,13 @@ import axios from "axios";
 const Register = () => {
   const { darkTheme } = useContext(GlobalContext);
   const [err, setErr] = useState(null);
+  const [file, setFile] = useState(null);
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: "",
     username: "",
     status: "",
+    desc: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -72,9 +74,20 @@ const Register = () => {
               : "bg-[#FFFFFF] border-[#DCDDDF]"
           } border-[1px]  h-[48px] w-full px-[16px] py-[12px] font-normal text-[16px] text-paragraph leading-[24px] outline-category mb-[8px]`}
         />
-
         <input
           type="text"
+          placeholder="Your Interests"
+          name="desc"
+          onChange={handleChange}
+          style={{ transition: "all ease-in-out .3s" }}
+          className={`${
+            darkTheme
+              ? "bg-[#181A2A] border-[#3B3C4A]"
+              : "bg-[#FFFFFF] border-[#DCDDDF]"
+          } border-[1px]  h-[48px] w-full px-[16px] py-[12px] font-normal text-[16px] text-paragraph leading-[24px] outline-category mb-[8px]`}
+        />
+        <input
+          type="password"
           placeholder="Your Password"
           name="password"
           onChange={handleChange}
@@ -85,7 +98,22 @@ const Register = () => {
               : "bg-[#FFFFFF] border-[#DCDDDF]"
           } border-[1px]  h-[48px] w-full px-[16px] py-[12px] font-normal text-[16px] text-paragraph leading-[24px] outline-category mb-[8px]`}
         />
-
+        <input
+          style={{ display: "none" }}
+          type="file"
+          id="file"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <label
+          className="flex gap-[5px] justify-center items-center cursor-pointer font-normal text-[16px] text-heading leading-[24px]"
+          htmlFor="file">
+          Upload Image
+          <img
+            src="/images/general/add-file.svg"
+            alt="upload"
+            className="size-[20px]"
+          />
+        </label>
         <div className="flex justify-center gap-[5px]">
           <Link to="/login">
             Already have account?

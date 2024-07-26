@@ -10,7 +10,7 @@ const SinglePost = () => {
   const { darkTheme, formattedDate, currentUser } = useContext(GlobalContext);
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState();
+  const [newComment, setNewComment] = useState("");
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -24,21 +24,40 @@ const SinglePost = () => {
     getPost();
   }, [id]);
 
+  const getComments = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8800/api/comments/${id}`);
+      setComments(res.data);
+    } catch (error) {
+      console.log(error);
+      setComments([]);
+    }
+  };
+
   useEffect(() => {
-    const getComments = async () => {
-      try {
-        const res = await axios.get(`http://localhost:8800/api/comments/${id}`);
-        setComments(res.data);
-        console.log(res.data);
-      } catch (error) {
-        console.log(error);
-        setComments([]);
-      }
-    };
     getComments();
   }, [id]);
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    e.preventDefault();
+    setNewComment(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:8800/api/comments/add", {
+        comment: newComment,
+        pid: Number(id),
+        uid: currentUser.id,
+        date: new Date().toISOString().split("T")[0],
+      });
+      getComments();
+      e.target.value = "";
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   let sanitizedContent;
 
@@ -129,6 +148,7 @@ const SinglePost = () => {
                   } border-b-[1px] h-[32px] w-[300px] px-[5px] py-[8px] font-normal text-[16px] text-paragraph leading-[24px] outline-none mb-[8px]`}
                 />
                 <button
+                  onClick={handleSubmit}
                   style={{ transition: "all ease-out .3s" }}
                   className={`px-[30px] py-[5px] rounded-[6px] border-[1px] border-[#4B6BFB] bg-[#4B6BFB] ${
                     darkTheme ? "hover:bg-[#242535]" : "hover:bg-[#FFFFFF]"

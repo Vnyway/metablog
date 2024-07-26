@@ -9,3 +9,12 @@ export const getComments = (req, res) => {
     return res.status(200).json(data);
   });
 };
+
+export const addComment = (req, res) => {
+  const q = "INSERT INTO comments(`comment`, `pid`, `uid`, `date`) VALUES (?)";
+  const values = [req.body.comment, req.body.pid, req.body.uid, req.body.date];
+  db.query(q, [values], (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+};
