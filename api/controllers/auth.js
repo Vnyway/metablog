@@ -33,12 +33,13 @@ export const register = (req, res) => {
     if (data.length) return res.status(409).json("User already exists");
 
     const q =
-      "INSERT INTO users(`username`, `status`, `email`, `desc`, `password`) VALUES (?)";
+      "INSERT INTO users(`username`, `status`, `email`, `desc`, `img`, `password`) VALUES (?)";
     const values = [
       req.body.username,
       req.body.status,
       req.body.email,
       req.body.desc,
+      req.body.img,
       req.body.password,
     ];
 

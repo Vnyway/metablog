@@ -17,4 +17,24 @@
   color: #181a2a;
   font-size: 24px;
   line-height: 32px;
+  border-left: 4px solid;
+  border-color: #e8e8ea;
+}
+
+.description-dark h3 {
+  font-weight: 600;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.description-dark .quote {
+  padding: 32px;
+  border-radius: 12px;
+  background-color: #242535;
+  font-style: italic;
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 32px;
+  border-left: 4px solid;
+  border-color: #e8e8ea;
 }

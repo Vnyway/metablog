@@ -31,7 +31,13 @@ const Login = () => {
         className={`flex flex-col gap-[20px] w-[450px] my-[80px] p-[32px] rounded-[12px] shadow-md ${
           darkTheme ? "bg-[#242535]" : "bg-[#FFFFFF]"
         }`}>
-        <h1 className="text-center font-semibold text-[26px]">Login</h1>
+        <h1
+          style={{ transition: "all ease-in-out .3s" }}
+          className={`text-center font-semibold text-[26px] ${
+            darkTheme ? "text-[#FFFFFF]" : "text-[#181A2A]"
+          }`}>
+          Login
+        </h1>
         <input
           type="text"
           placeholder="Your Email"
@@ -56,10 +62,15 @@ const Login = () => {
               : "bg-[#FFFFFF] border-[#DCDDDF]"
           } border-[1px]  h-[48px] w-full px-[16px] py-[12px] font-normal text-[16px] text-paragraph leading-[24px] outline-category mb-[8px]`}
         />
-        <div className="flex justify-center gap-[5px]">
+        <div className="text-center font-normal text-[16px] text-customGray leading-[24px] pb-[8px] group">
           <Link to="/register">
             Do not have account?
-            <span> Register</span>
+            <span
+              style={{ transition: "all ease-out .3s" }}
+              className="group-hover:text-[#FFFFFF] cursor-pointer">
+              {" "}
+              Register
+            </span>
           </Link>
         </div>
         {err && <p className="text-center text-red-600">{err}</p>}

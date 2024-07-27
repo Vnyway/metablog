@@ -39,7 +39,11 @@ const Footer = () => {
   return (
     <footer
       style={{ transition: "all ease-in-out .3s" }}
-      className={`${darkTheme ? "bg-[#141624]" : "bg-[#E8E8EA]"}`}>
+      className={`${
+        darkTheme
+          ? "bg-[#141624] border-[#242535]"
+          : "bg-[#E8E8EA] border-[#E8E8EA]"
+      } border-t-[1px]`}>
       <div className="container mx-auto pt-[64px] flex flex-col gap-[64px]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[6%]">
           <div className="flex flex-col gap-[24px]">

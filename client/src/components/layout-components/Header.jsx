@@ -64,6 +64,7 @@ const Header = () => {
                         : "/images/bloggers/default.svg"
                     }
                     alt={currentUser.username}
+                    className="size-[36px] rounded-full"
                   />
                   <span className={darkTheme ? listItemDark : listItemLight}>
                     Logout

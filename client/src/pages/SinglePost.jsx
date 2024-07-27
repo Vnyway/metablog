@@ -53,7 +53,6 @@ const SinglePost = () => {
         date: new Date().toISOString().split("T")[0],
       });
       getComments();
-      e.target.value = "";
     } catch (error) {
       console.log(error);
     }
@@ -94,13 +93,24 @@ const SinglePost = () => {
           </div>
           <img src={post.postImg} alt={post.title} className="w-full" />
           <div
+            style={{ transition: "all ease-in-out .3s" }}
             dangerouslySetInnerHTML={{ __html: sanitizedContent }}
-            className="description flex flex-col items-start gap-[32px] font-normal text-[20px] text-lists leading-[32px]"></div>
+            className={`${
+              darkTheme
+                ? "description-dark text-[#BABABF]"
+                : "description text-[#3B3C4A]"
+            } flex flex-col items-start gap-[32px] font-normal text-[20px] leading-[32px]`}></div>
           <div className="flex flex-col gap-[20px]">
-            <h3 className="font-semibold text-[24px] text-heading">Comments</h3>
+            <h3
+              style={{ transition: "all ease-in-out .3s" }}
+              className={`${
+                darkTheme ? "text-[#FFFFFF]" : "text-[#181A2A]"
+              } font-semibold text-[24px] `}>
+              Comments
+            </h3>
             {comments.length > 0 &&
               comments.map((comment) => (
-                <div className="flex flex-col gap-[20px]">
+                <div className="flex flex-col gap-[10px]">
                   <div className="flex items-center gap-[12px]">
                     <img
                       src={
@@ -112,7 +122,10 @@ const SinglePost = () => {
                       className="size-[45px]"
                     />
                     <div className="flex flex-col">
-                      <h4 className="font-medium text-[20px] text-heading">
+                      <h4
+                        className={`font-medium text-[20px] ${
+                          darkTheme ? "text-[#FFFFFF]" : "text-[#181A2A]"
+                        }`}>
                         {comment.username}
                       </h4>
                       <span className="font-normal text-[14px] text-customGray">
@@ -120,7 +133,10 @@ const SinglePost = () => {
                       </span>
                     </div>
                   </div>
-                  <p className="pl-[57px] font-normal text-[18px]">
+                  <p
+                    className={`pl-[57px] font-normal text-[18px] ${
+                      darkTheme ? "text-[#BABABF] " : "text-[#3B3C4A]"
+                    }`}>
                     {comment.comment}
                   </p>
                 </div>
@@ -129,11 +145,12 @@ const SinglePost = () => {
               <form className="flex items-center gap-[20px]">
                 <img
                   src={
-                    currentUser.userImg
-                      ? currentUser.userImg
+                    currentUser.img
+                      ? currentUser.img
                       : "/images/bloggers/default.svg"
                   }
                   alt={currentUser.username}
+                  className="size-[36px] rounded-full "
                 />
                 <input
                   type="text"
