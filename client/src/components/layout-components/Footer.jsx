@@ -3,17 +3,8 @@ import { GlobalContext } from "../../context/globalContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const categories = [
-  { id: 1, cat: "Lifestyle" },
-  { id: 2, cat: "Technology" },
-  { id: 3, cat: "Travel" },
-  { id: 4, cat: "Business" },
-  { id: 5, cat: "Economy" },
-  { id: 6, cat: "Sports" },
-];
-
 const Footer = () => {
-  const { darkTheme, validateEmail } = useContext(GlobalContext);
+  const { darkTheme, validateEmail, categories } = useContext(GlobalContext);
 
   const [input, setInput] = useState({
     email: "",

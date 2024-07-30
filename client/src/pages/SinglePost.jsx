@@ -14,7 +14,7 @@ const SinglePost = () => {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/posts/${id}`);
+        const res = await axios.get(`/posts/${id}`);
         setPost(res.data[0]);
       } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ const SinglePost = () => {
 
   const getComments = async () => {
     try {
-      const res = await axios.get(`http://localhost:8800/api/comments/${id}`);
+      const res = await axios.get(`/comments/${id}`);
       setComments(res.data);
     } catch (error) {
       console.log(error);
@@ -46,7 +46,7 @@ const SinglePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8800/api/comments/add", {
+      await axios.post("/comments/add", {
         comment: newComment,
         pid: Number(id),
         uid: currentUser.id,

@@ -7,6 +7,7 @@ import Header from "./components/layout-components/Header";
 import Footer from "./components/layout-components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Write from "./pages/Write";
 
 const Layout = () => (
   <>
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/singlePost/:id" element={<SinglePost />} />
+          <Route path="/write" element={<Write />} />
         </Route>
       </Routes>
     </BrowserRouter>

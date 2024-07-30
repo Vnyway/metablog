@@ -14,7 +14,7 @@ const Home = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/posts${cat}`);
+        const res = await axios.get(`/posts${cat}`);
         setPosts(res.data);
         setShownPosts(res.data);
 

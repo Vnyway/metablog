@@ -33,7 +33,7 @@ const Posts = ({ shownPosts, author }) => {
                 <h3
                   style={{ transition: "all ease-in-out .3s" }}
                   className={`${
-                    darkTheme ? "text-[#FFFFFF]" : "text-[##181A2A]"
+                    darkTheme ? "text-[#FFFFFF]" : "text-[#181A2A]"
                   } font-semibold text-[24px] leading-[28px] line-clamp-2 h-[62px]`}>
                   {post.title}
                 </h3>
@@ -41,7 +41,14 @@ const Posts = ({ shownPosts, author }) => {
               <Link to={`/blogger/${post.uid}`}>
                 <div className="flex gap-[20px] items-center text-customGray">
                   <div className="flex items-center gap-[12px]">
-                    <img src={post.userImg} alt={post.username} />
+                    <img
+                      src={
+                        post.userImg
+                          ? post.userImg
+                          : "/images/bloggers/default.svg"
+                      }
+                      alt={post.username}
+                    />
                     <span>{post.username}</span>
                   </div>
                   <span>{formattedDate(post.date)}</span>

@@ -14,9 +14,7 @@ const Blogger = () => {
   useEffect(() => {
     const getUserPosts = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8800/api/posts/user/${id}`
-        );
+        const res = await axios.get(`/posts/user/${id}`);
         setPosts(res.data);
       } catch (error) {
         console.log(error);
@@ -29,7 +27,7 @@ const Blogger = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/users/${id}`);
+        const res = await axios.get(`/users/${id}`);
         setUserData(res.data[0]);
       } catch (error) {
         console.log(error);
