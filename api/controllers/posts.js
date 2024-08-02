@@ -50,6 +50,8 @@ export const addPost = (req, res) => {
       userInfo.id,
     ];
 
+    console.log(values);
+
     db.query(q, [values], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.json("Post has been created");

@@ -67,7 +67,11 @@ const Login = () => {
             Do not have account?
             <span
               style={{ transition: "all ease-out .3s" }}
-              className="group-hover:text-[#FFFFFF] cursor-pointer">
+              className={`${
+                darkTheme
+                  ? "group-hover:text-[#FFFFFF]"
+                  : "group-hover:text-[#181A2A]"
+              } cursor-pointer`}>
               {" "}
               Register
             </span>

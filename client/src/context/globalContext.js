@@ -17,6 +17,12 @@ export const GlobalContextProvider = ({ children }) => {
     { id: 6, cat: "Sports" },
   ];
 
+  const extensions = [".png", ".jpg", ".svg", ".gif"];
+
+  const checkImgUrl = (filename) => {
+    return extensions.some((ext) => filename.endsWith(ext));
+  };
+
   const formattedDate = (dateStr) => {
     const date = new Date(dateStr);
     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
@@ -69,6 +75,7 @@ export const GlobalContextProvider = ({ children }) => {
         currentUser,
         login,
         logout,
+        checkImgUrl,
       }}>
       {children}
     </GlobalContext.Provider>

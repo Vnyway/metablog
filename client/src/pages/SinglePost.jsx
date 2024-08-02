@@ -85,13 +85,20 @@ const SinglePost = () => {
             </h1>
             <div className="flex gap-[20px] items-center text-customGray">
               <div className="flex items-center gap-[12px]">
-                <img src={post.userImg} alt={post.username} />
+                <img
+                  src={post.userImg || "/images/bloggers/default.svg"}
+                  alt={post.username}
+                />
                 <span>{post.username}</span>
               </div>
               <span>{formattedDate(post.date)}</span>
             </div>
           </div>
-          <img src={post.postImg} alt={post.title} className="w-full" />
+          <img
+            src={post.postImg || "/images/posts/post1.svg"}
+            alt={post.title}
+            className="w-full"
+          />
           <div
             style={{ transition: "all ease-in-out .3s" }}
             dangerouslySetInnerHTML={{ __html: sanitizedContent }}
@@ -166,10 +173,14 @@ const SinglePost = () => {
                 />
                 <button
                   onClick={handleSubmit}
+                  disabled={!newComment}
                   style={{ transition: "all ease-out .3s" }}
                   className={`px-[30px] py-[5px] rounded-[6px] border-[1px] border-[#4B6BFB] bg-[#4B6BFB] ${
-                    darkTheme ? "hover:bg-[#242535]" : "hover:bg-[#FFFFFF]"
-                  } text-[#FFFFFF] hover:text-[#4B6BFB] font-medium text-[16px] leading-[24px]`}>
+                    newComment &&
+                    (darkTheme
+                      ? "hover:bg-[#242535] hover:text-[#4B6BFB]"
+                      : "hover:bg-[#FFFFFF] hover:text-[#4B6BFB]")
+                  } text-[#FFFFFF] font-medium text-[16px] leading-[24px]`}>
                   Add Comment
                 </button>
               </form>

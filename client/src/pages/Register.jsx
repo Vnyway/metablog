@@ -5,7 +5,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 const Register = () => {
-  const { darkTheme, validateEmail } = useContext(GlobalContext);
+  const { darkTheme, validateEmail, checkImgUrl } = useContext(GlobalContext);
   const [err, setErr] = useState(null);
   const [file, setFile] = useState(null);
   const [email, setEmail] = useState("");
@@ -38,7 +38,11 @@ const Register = () => {
           status,
           desc,
           password,
-          img: file ? `/images/bloggers/${imgUrl}` : "",
+          img: !file
+            ? ""
+            : checkImgUrl(imgUrl)
+            ? `/images/bloggers/${imgUrl}`
+            : "",
         });
         navigate("/login");
       } else {
