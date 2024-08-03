@@ -67,10 +67,10 @@ const SinglePost = () => {
   return (
     <main
       style={{ transition: "all ease-in-out .3s" }}
-      className={`${darkTheme ? "bg-[#181A2A]" : ""}`}>
+      className={`${darkTheme ? "bg-[#181A2A]" : ""} pb-[20px] md:pb-[30px]`}>
       {post && (
-        <div className="container mx-auto py-[30px] flex flex-col items-start gap-[32px]">
-          <div className="flex flex-col items-start gap-[20px]">
+        <div className="container mx-auto py-[15px] md:py-[30px] flex flex-col items-start gap-[32px]">
+          <div className="flex flex-col items-start gap-[10px] md:gap-[20px]">
             <Link
               to={`/?cat=${post.cat}`}
               className="px-[12px] py-[6px] bg-category rounded-[6px] text-white font-medium text-[14px]">
@@ -80,7 +80,7 @@ const SinglePost = () => {
               style={{ transition: "all ease-in-out .3s" }}
               className={`${
                 darkTheme ? "text-[#FFFFFF]" : "text-[##181A2A]"
-              } font-semibold text-[36px] leading-[40px]`}>
+              } font-semibold text-[28px] md:text-[36px]`}>
               {post.title}
             </h1>
             <div className="flex gap-[20px] items-center text-customGray">
@@ -106,8 +106,8 @@ const SinglePost = () => {
               darkTheme
                 ? "description-dark text-[#BABABF]"
                 : "description text-[#3B3C4A]"
-            } flex flex-col items-start gap-[32px] font-normal text-[20px] leading-[32px]`}></div>
-          <div className="flex flex-col gap-[20px]">
+            } flex flex-col items-start gap-[15px] md:gap-[32px] font-normal text-[20px] leading-[32px]`}></div>
+          <div className="w-full flex flex-col gap-[20px]">
             <h3
               style={{ transition: "all ease-in-out .3s" }}
               className={`${
@@ -130,7 +130,7 @@ const SinglePost = () => {
                     />
                     <div className="flex flex-col">
                       <h4
-                        className={`font-medium text-[20px] ${
+                        className={`font-medium text-[18px] md:text-[20px] ${
                           darkTheme ? "text-[#FFFFFF]" : "text-[#181A2A]"
                         }`}>
                         {comment.username}
@@ -141,7 +141,7 @@ const SinglePost = () => {
                     </div>
                   </div>
                   <p
-                    className={`pl-[57px] font-normal text-[18px] ${
+                    className={`pl-[57px] font-normal text-[16px] md:text-[18px] ${
                       darkTheme ? "text-[#BABABF] " : "text-[#3B3C4A]"
                     }`}>
                     {comment.comment}
@@ -149,28 +149,30 @@ const SinglePost = () => {
                 </div>
               ))}
             {currentUser && (
-              <form className="flex items-center gap-[20px]">
-                <img
-                  src={
-                    currentUser.img
-                      ? currentUser.img
-                      : "/images/bloggers/default.svg"
-                  }
-                  alt={currentUser.username}
-                  className="size-[36px] rounded-full "
-                />
-                <input
-                  type="text"
-                  placeholder="Type Your Comment"
-                  name="comment"
-                  onChange={handleChange}
-                  style={{ transition: "all ease-in-out .3s" }}
-                  className={`${
-                    darkTheme
-                      ? "bg-[#181A2A] border-[#3B3C4A]"
-                      : "bg-[#FFFFFF] border-[#DCDDDF]"
-                  } border-b-[1px] h-[32px] w-[300px] px-[5px] py-[8px] font-normal text-[16px] text-paragraph leading-[24px] outline-none mb-[8px]`}
-                />
+              <form className="w-full md:w-auto flex flex-col md:flex-row md:items-center gap-[20px]">
+                <div className="flex items-center gap-[10px]">
+                  <img
+                    src={
+                      currentUser.img
+                        ? currentUser.img
+                        : "/images/bloggers/default.svg"
+                    }
+                    alt={currentUser.username}
+                    className="size-[36px] rounded-full "
+                  />
+                  <input
+                    type="text"
+                    placeholder="Type Your Comment"
+                    name="comment"
+                    onChange={handleChange}
+                    style={{ transition: "all ease-in-out .3s" }}
+                    className={`${
+                      darkTheme
+                        ? "bg-[#181A2A] border-[#3B3C4A]"
+                        : "bg-[#FFFFFF] border-[#DCDDDF]"
+                    } border-b-[1px] h-[32px] w-full md:w-[300px] px-[5px] py-[8px] font-normal text-[16px] text-paragraph leading-[24px] outline-none mb-[8px]`}
+                  />
+                </div>
                 <button
                   onClick={handleSubmit}
                   disabled={!newComment}

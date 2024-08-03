@@ -7,6 +7,7 @@
 .description h3 {
   font-weight: 600;
   font-size: 24px;
+  color: #242535;
 }
 
 .description .quote {
@@ -37,6 +38,50 @@
   line-height: 32px;
   border-left: 4px solid;
   border-color: #e8e8ea;
+}
+
+@media (min-width: 100px) {
+  .description h3 {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .description .quote {
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .description-dark h3 {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .description-dark .quote {
+    padding: 10px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .description h3 {
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  .description .quote {
+    padding: 32px;
+    font-size: 24px;
+  }
+
+  .description-dark h3 {
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  .description-dark .quote {
+    padding: 32px;
+    font-size: 24px;
+  }
 }
 
 .editor h2 {

@@ -8,6 +8,7 @@ import Footer from "./components/layout-components/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Write from "./pages/Write";
+import { ScrollToTop } from "./components/general-components/ScrollToTop";
 
 const Layout = () => (
   <>
@@ -20,6 +21,7 @@ const Layout = () => (
 const App = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />

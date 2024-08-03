@@ -44,7 +44,7 @@ export const GlobalContextProvider = ({ children }) => {
   };
 
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("user") || null)
+    JSON.parse(sessionStorage.getItem("user") || null)
   );
 
   const login = async (inputs) => {
@@ -58,7 +58,7 @@ export const GlobalContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(currentUser));
+    sessionStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
 
   return (

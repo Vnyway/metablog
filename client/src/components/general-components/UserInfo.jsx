@@ -8,7 +8,7 @@ const UserInfo = ({ img, username, status, desc }) => {
     <section className="container mx-auto">
       <div
         style={{ transition: "all ease-in-out .3s" }}
-        className={`p-[48px] rounded-[12px] ${
+        className={`p-[20px] md:p-[48px] rounded-[12px] ${
           darkTheme ? "bg-[#242535]" : "bg-[#F6F6F7]"
         } flex justify-center items-center`}>
         <div className="flex flex-col items-center gap-[14px] md:gap-[24px] w-full md:w-[50%]">
@@ -33,7 +33,7 @@ const UserInfo = ({ img, username, status, desc }) => {
           </div>
           <p
             style={{ transition: "all ease-in-out .3s" }}
-            className={`text-center font-normal text-[18px] ${
+            className={`text-center font-normal text-[15px] md:text-[18px] ${
               darkTheme ? "text-[#BABABF]" : "text-[#3B3C4A ]"
             } leading-[26px]`}>
             {desc}

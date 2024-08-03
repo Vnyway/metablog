@@ -55,10 +55,12 @@ const Register = () => {
   return (
     <main
       style={{ transition: "all ease-in-out .3s" }}
-      className={`${darkTheme ? "bg-[#181A2A]" : ""} flex justify-center`}>
+      className={`${
+        darkTheme ? "bg-[#181A2A]" : ""
+      } flex justify-center px-[20px]`}>
       <form
         style={{ transition: "all ease-in-out .3s" }}
-        className={`flex flex-col gap-[20px] w-[450px] my-[80px] p-[32px] rounded-[12px] shadow-md ${
+        className={`flex flex-col gap-[20px] w-full md:w-[450px] my-[80px] p-[32px] rounded-[12px] shadow-md ${
           darkTheme ? "bg-[#242535]" : "bg-[#FFFFFF]"
         }`}>
         <h1

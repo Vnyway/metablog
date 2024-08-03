@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../context/globalContext";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Tiptap from "../components/general-components/Tiptap";
 import InputError from "../components/general-components/InputError";
 
@@ -46,7 +46,7 @@ const Category = ({ id, cat, category, setCategory, darkTheme }) => (
 );
 
 const Write = () => {
-  const { darkTheme, dateToPost, categories, checkImgUrl } =
+  const { darkTheme, dateToPost, categories, checkImgUrl, currentUser } =
     useContext(GlobalContext);
 
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const Write = () => {
     },
   });
 
-  const { register, formState, handleSubmit, reset, setValue } = form;
+  const { register, formState, handleSubmit, setValue } = form;
   const { errors, isSubmitSuccessful } = formState;
 
   const upload = async () => {
@@ -99,7 +99,9 @@ const Write = () => {
         !file ? "" : checkImgUrl(imgUrl) ? `/images/posts/${imgUrl}` : ""
       );
     };
-    setImg();
+    if (file) {
+      setImg();
+    }
   }, [file]);
 
   const onSubmit = async (data) => {
@@ -249,18 +251,31 @@ const Write = () => {
           </motion.label>
         </div>
         <div className="flex justify-start items-center">
-          <button
-            disabled={!category}
-            style={{ transition: "all ease-out .3s" }}
-            className={`mt-[20px] px-[20px] py-[12px] rounded-[6px] border-[1px] border-[#4B6BFB] bg-[#4B6BFB] ${
-              category
-                ? darkTheme
+          {currentUser ? (
+            <button
+              disabled={!category}
+              style={{ transition: "all ease-out .3s" }}
+              className={`mt-[20px] px-[20px] py-[12px] rounded-[6px] border-[1px] border-[#4B6BFB] bg-[#4B6BFB] ${
+                category
+                  ? darkTheme
+                    ? "hover:bg-[#181A2A] hover:text-[#4B6BFB]"
+                    : "hover:bg-[#FFFFFF] hover:text-[#4B6BFB]"
+                  : "cursor-not-allowed"
+              } text-[#FFFFFF]  font-medium text-[20px]`}>
+              Add Your Post
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              style={{ transition: "all ease-out .3s" }}
+              className={`mt-[20px] px-[20px] py-[12px] rounded-[6px] border-[1px] border-[#4B6BFB] bg-[#4B6BFB] ${
+                darkTheme
                   ? "hover:bg-[#181A2A] hover:text-[#4B6BFB]"
                   : "hover:bg-[#FFFFFF] hover:text-[#4B6BFB]"
-                : "cursor-not-allowed"
-            } text-[#FFFFFF]  font-medium text-[20px]`}>
-            Add Your Post
-          </button>
+              } text-[#FFFFFF]  font-medium text-[20px]`}>
+              Login first
+            </Link>
+          )}
         </div>
       </form>
     </main>

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../context/globalContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { links } from "./Header";
 
 const Footer = () => {
   const { darkTheme, validateEmail, categories } = useContext(GlobalContext);
@@ -89,78 +90,20 @@ const Footer = () => {
                 Quick Link
               </h3>
               <ul className="flex flex-col font-normal text-[16px] leading-[24px] gap-[5px]">
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/about"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/blog"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Achieved
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Author
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/"
-                    style={{ transition: "all ease-out .3s" }}
-                    className={`text-[#696A75] ${
-                      darkTheme
-                        ? "hover:text-[#FFFFFF]"
-                        : "hover:text-[#181A2A]"
-                    }`}>
-                    Contact
-                  </Link>
-                </li>
+                {links.map((link) => (
+                  <li key={link.id}>
+                    <Link
+                      to={link.path}
+                      style={{ transition: "all ease-out .3s" }}
+                      className={`text-[#696A75] ${
+                        darkTheme
+                          ? "hover:text-[#FFFFFF]"
+                          : "hover:text-[#181A2A]"
+                      }`}>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="flex flex-col gap-[12px]">
@@ -259,38 +202,6 @@ const Footer = () => {
               </span>
             </div>
           </div>
-          <ul className="flex flex-col gap-[15px] md:flex-row md:items-center md:gap-[32px] font-normal text-lists leading-[24px]">
-            <li>
-              <Link
-                to="/"
-                style={{ transition: "all ease-out .3s" }}
-                className={`text-[#696A75]  ${
-                  darkTheme ? "hover:text-[#FFFFFF]" : "hover:text-[#181A2A]"
-                }`}>
-                Terms of Use
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/"
-                style={{ transition: "all ease-out .3s" }}
-                className={`text-[#696A75]  ${
-                  darkTheme ? "hover:text-[#FFFFFF]" : "hover:text-[#181A2A]"
-                }`}>
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/"
-                style={{ transition: "all ease-out .3s" }}
-                className={`text-[#696A75]  ${
-                  darkTheme ? "hover:text-[#FFFFFF]" : "hover:text-[#181A2A]"
-                }`}>
-                Cookie Policy
-              </Link>
-            </li>
-          </ul>
         </div>
       </div>
     </footer>
