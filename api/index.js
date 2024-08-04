@@ -6,7 +6,6 @@ import subscribersRoutes from "./routes/subscribers.js";
 import commentsRoutes from "./routes/comments.js";
 import authRoutes from "./routes/auth.js";
 import cookieParser from "cookie-parser";
-import cors from "cors";
 
 dotenv.config();
 
@@ -21,6 +20,6 @@ app.use("/api/subscribers", subscribersRoutes);
 app.use("/api/comments", commentsRoutes);
 app.use("/api/auth", authRoutes);
 
-app.listen(8800, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log("connected");
 });

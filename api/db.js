@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
+  host: "u3y93bv513l7zv6o.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
+  user: "n2d1u3hy3142r8ro",
   password: process.env.MYSQL_PASSWORD,
-  database: "metablog",
+  database: "gu72qatopnsedbt6",
 });
