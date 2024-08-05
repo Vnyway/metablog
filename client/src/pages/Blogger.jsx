@@ -14,7 +14,9 @@ const Blogger = () => {
   useEffect(() => {
     const getUserPosts = async () => {
       try {
-        const res = await axios.get(`/posts/user/${id}`);
+        const res = await axios.get(
+          `https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/posts/user/${id}`
+        );
         setPosts(res.data);
       } catch (error) {
         console.log(error);
@@ -27,7 +29,9 @@ const Blogger = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const res = await axios.get(`/users/${id}`);
+        const res = await axios.get(
+          `https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/users/${id}`
+        );
         setUserData(res.data[0]);
       } catch (error) {
         console.log(error);

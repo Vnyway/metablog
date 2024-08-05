@@ -20,7 +20,10 @@ const Register = () => {
       const formData = new FormData();
       formData.append("file", file);
       console.log(formData);
-      const res = await axios.post("/auth/upload", formData);
+      const res = await axios.post(
+        "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/auth/upload",
+        formData
+      );
       return res.data;
     } catch (error) {
       console.log(error);
@@ -32,18 +35,21 @@ const Register = () => {
     const imgUrl = await upload();
     try {
       if (validateEmail(email)) {
-        await axios.post("/auth/register", {
-          email,
-          username,
-          status,
-          desc,
-          password,
-          img: !file
-            ? ""
-            : checkImgUrl(imgUrl)
-            ? `/images/bloggers/${imgUrl}`
-            : "",
-        });
+        await axios.post(
+          "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/auth/register",
+          {
+            email,
+            username,
+            status,
+            desc,
+            password,
+            img: !file
+              ? ""
+              : checkImgUrl(imgUrl)
+              ? `/images/bloggers/${imgUrl}`
+              : "",
+          }
+        );
         navigate("/login");
       } else {
         setErr("Email is invalid!");

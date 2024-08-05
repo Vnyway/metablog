@@ -21,7 +21,10 @@ const Footer = () => {
     e.preventDefault();
     if (validateEmail(input.email)) {
       setMessage(
-        await axios.post("http://localhost:8800/api/subscribers/add", input)
+        await axios.post(
+          "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/subscribers/add",
+          input
+        )
       );
     } else {
       setMessage({ data: "Incorrect email!" });

@@ -14,7 +14,9 @@ const Home = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const res = await axios.get(`/posts${cat}`);
+        const res = await axios.get(
+          `https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/posts${cat}`
+        );
         setPosts(res.data);
         setShownPosts(res.data);
 

@@ -48,12 +48,17 @@ export const GlobalContextProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("/auth/login", inputs);
+    const res = await axios.post(
+      "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/auth/login",
+      inputs
+    );
     setCurrentUser(res.data);
   };
 
   const logout = async () => {
-    await axios.post("/auth/logout");
+    await axios.post(
+      "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/auth/logout"
+    );
     setCurrentUser(null);
   };
 

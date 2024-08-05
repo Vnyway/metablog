@@ -72,7 +72,10 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post("/posts/upload", formData);
+      const res = await axios.post(
+        "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/posts/upload",
+        formData
+      );
       return res.data;
     } catch (error) {
       console.log(error);
@@ -106,7 +109,10 @@ const Write = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("/posts", data);
+      await axios.post(
+        "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/posts",
+        data
+      );
     } catch (error) {
       console.log(error);
     }

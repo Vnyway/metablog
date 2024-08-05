@@ -14,7 +14,9 @@ const SinglePost = () => {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const res = await axios.get(`/posts/${id}`);
+        const res = await axios.get(
+          `https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/posts/${id}`
+        );
         setPost(res.data[0]);
       } catch (error) {
         console.log(error);
@@ -26,7 +28,9 @@ const SinglePost = () => {
 
   const getComments = async () => {
     try {
-      const res = await axios.get(`/comments/${id}`);
+      const res = await axios.get(
+        `https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/comments/${id}`
+      );
       setComments(res.data);
     } catch (error) {
       console.log(error);
@@ -46,12 +50,15 @@ const SinglePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/comments/add", {
-        comment: newComment,
-        pid: Number(id),
-        uid: currentUser.id,
-        date: new Date().toISOString().split("T")[0],
-      });
+      await axios.post(
+        "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/comments/add",
+        {
+          comment: newComment,
+          pid: Number(id),
+          uid: currentUser.id,
+          date: new Date().toISOString().split("T")[0],
+        }
+      );
       getComments();
     } catch (error) {
       console.log(error);
