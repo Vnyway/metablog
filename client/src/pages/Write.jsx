@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import Tiptap from "../components/general-components/Tiptap";
 import InputError from "../components/general-components/InputError";
+import Cookies from "js-cookie";
 
 const Category = ({ id, cat, category, setCategory, darkTheme }) => (
   <div
@@ -46,7 +47,7 @@ const Category = ({ id, cat, category, setCategory, darkTheme }) => (
 );
 
 const Write = () => {
-  const { darkTheme, dateToPost, categories, checkImgUrl, currentUser } =
+  const { darkTheme, dateToPost, categories, currentUser } =
     useContext(GlobalContext);
 
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ const Write = () => {
       img: "",
       cid: "",
       date: dateToPost(Date.now()),
+      access_token: Cookies.get("access_token"),
     },
   });
 
@@ -97,10 +99,7 @@ const Write = () => {
   useEffect(() => {
     const setImg = async () => {
       const imgUrl = await upload();
-      setValue(
-        "img",
-        !file ? "" : checkImgUrl(imgUrl) ? `/images/posts/${imgUrl}` : ""
-      );
+      setValue("img", !file ? "" : imgUrl);
     };
     if (file) {
       setImg();
@@ -109,7 +108,7 @@ const Write = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post(
+      const res = await axios.post(
         "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/posts",
         data
       );

@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const GlobalContext = createContext();
 
@@ -52,13 +53,17 @@ export const GlobalContextProvider = ({ children }) => {
       "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/auth/login",
       inputs
     );
-    setCurrentUser(res.data);
+    const { token, ...userData } = res.data;
+    setCurrentUser(userData);
+    Cookies.set("access_token", token, {
+      sameSite: "none",
+      secure: true,
+      crossSite: true,
+    });
   };
 
-  const logout = async () => {
-    await axios.post(
-      "https://node-deploy-metablog-395f0c4983e3.herokuapp.com/api/auth/logout"
-    );
+  const logout = () => {
+    Cookies.remove("access_token");
     setCurrentUser(null);
   };
 

@@ -71,7 +71,7 @@ const BurgerMenu = () => {
 
   return (
     <div ref={scope}>
-      <Menu />
+      <Menu onClick={() => setIsOpen(!isOpen)} />
       <MenuToggle toggle={() => setIsOpen(!isOpen)} />
     </div>
   );

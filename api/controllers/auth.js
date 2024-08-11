@@ -2,12 +2,17 @@ import { db } from "../db.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { GetObjectCommand } from "@aws-sdk/client-s3";
+import { s3 } from "../s3clientBloggers.js";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 dotenv.config();
 
+const bucketName = process.env.BUCKET_NAME;
+
 export const login = (req, res) => {
   const q = "SELECT * FROM users WHERE email = ?";
-  db.query(q, [req.body.email], (err, data) => {
+  db.query(q, [req.body.email], async (err, data) => {
     if (err) return res.status(503).json(err);
     if (!data.length) return res.status(404).json("User doesn't exist");
 
@@ -19,25 +24,21 @@ export const login = (req, res) => {
     if (!isPasswordCorrect)
       return res.status(400).json("Wrong username or password");
 
+    if (data[0].img) {
+      const getObjectParams = {
+        Bucket: bucketName,
+        Key: data[0].img,
+      };
+
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+      data[0].img = url;
+    }
+
     const token = jwt.sign({ id: data[0].id }, process.env.JWT_KEY);
     const { password, ...other } = data[0];
-    res
-      .cookie("access_token", token, {
-        httpOnly: true,
-      })
-      .status(200)
-      .json(other);
+    res.status(200).json({ ...other, token });
   });
-};
-
-export const logout = (req, res) => {
-  res
-    .clearCookie("access_token", {
-      sameSite: "none",
-      secure: true,
-    })
-    .status(200)
-    .json("User has been logged out");
 };
 
 export const register = (req, res) => {

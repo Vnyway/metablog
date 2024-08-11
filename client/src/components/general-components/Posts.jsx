@@ -56,6 +56,7 @@ const Posts = ({ shownPosts, author }) => {
                           : "/images/bloggers/default.svg"
                       }
                       alt={post.username}
+                      className="size-[36px] rounded-full"
                     />
                     <span>{post.username}</span>
                   </div>

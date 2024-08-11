@@ -46,7 +46,7 @@ const TopSection = ({ latestPost }) => {
                         : "/images/bloggers/default.svg"
                     }
                     alt="user"
-                    className="size-[36px]"
+                    className="size-[36px] rounded-full"
                   />
                   <span>{latestPost.username}</span>
                 </div>

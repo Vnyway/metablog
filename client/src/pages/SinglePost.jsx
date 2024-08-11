@@ -90,7 +90,9 @@ const SinglePost = () => {
               } font-semibold text-[28px] md:text-[36px]`}>
               {post.title}
             </h1>
-            <div className="flex gap-[20px] items-center text-customGray">
+            <Link
+              to={`/blogger/${post.userId}`}
+              className="flex gap-[20px] items-center text-customGray">
               <div className="flex items-center gap-[12px]">
                 <img
                   src={post.userImg || "/images/bloggers/default.svg"}
@@ -99,7 +101,7 @@ const SinglePost = () => {
                 <span>{post.username}</span>
               </div>
               <span>{formattedDate(post.date)}</span>
-            </div>
+            </Link>
           </div>
           <img
             src={post.postImg || "/images/posts/post1.svg"}
@@ -133,7 +135,7 @@ const SinglePost = () => {
                           : "/images/bloggers/default.svg"
                       }
                       alt={comment.username}
-                      className="size-[45px]"
+                      className="size-[45px] rounded-full"
                     />
                     <div className="flex flex-col">
                       <h4

@@ -4,7 +4,7 @@ import { links } from "./Header";
 import { GlobalContext } from "../../context/globalContext";
 import { burgerItemLight, burderItemDark } from "../../styles/styles";
 
-const Menu = () => {
+const Menu = ({ onClick }) => {
   const { darkTheme, currentUser, logout } = useContext(GlobalContext);
   return (
     <>
@@ -58,7 +58,7 @@ const Menu = () => {
           </li>
         </ul>
       </nav>
-      <div className="shadw"></div>
+      <div onClick={onClick} className="shadw cursor-default"></div>
     </>
   );
 };
